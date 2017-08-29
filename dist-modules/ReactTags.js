@@ -97,19 +97,19 @@ var ReactTags = function (_Component) {
   }, {
     key: "resetAndFocusInput",
     value: function resetAndFocusInput() {
+      this.textInput.value = "";
+      this.textInput.focus();
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
       var _props = this.props,
           autofocus = _props.autofocus,
           readOnly = _props.readOnly;
 
       if (autofocus && !readOnly) {
-        this.textInput.value = "";
-        this.textInput.focus();
+        this.resetAndFocusInput();
       }
-    }
-  }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.resetAndFocusInput();
     }
   }, {
     key: "filteredSuggestions",
@@ -348,6 +348,7 @@ var ReactTags = function (_Component) {
           },
           className: this.state.classNames.tagInputField,
           type: "text",
+          disabled: this.props.disabledInput,
           placeholder: placeholder,
           "aria-label": placeholder,
           onBlur: this.handleBlur,
@@ -406,6 +407,7 @@ ReactTags.PropTypes = {
   removeComponent: _propTypes2.default.func,
   autocomplete: _propTypes2.default.oneOfType([_propTypes2.default.bool, _propTypes2.default.number]),
   readOnly: _propTypes2.default.bool,
+  disabledInput: _propTypes2.default.bool,
   classNames: _propTypes2.default.object,
   name: _propTypes2.default.string,
   id: _propTypes2.default.string,
@@ -422,7 +424,8 @@ ReactTags.defaultProps = {
   allowDeleteFromEmptyInput: true,
   minQueryLength: 2,
   autocomplete: false,
-  readOnly: false
+  readOnly: false,
+  disabledInput: false
 };
 
 module.exports = {
