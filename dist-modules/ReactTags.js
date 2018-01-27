@@ -97,6 +97,7 @@ var ReactTags = function (_Component) {
   }, {
     key: 'resetAndFocusInput',
     value: function resetAndFocusInput() {
+      if (!this.textInput) return;
       this.textInput.value = '';
       this.textInput.focus();
     }
@@ -164,6 +165,7 @@ var ReactTags = function (_Component) {
     value: function handleBlur(e) {
       var value = e.target.value.trim();
       if (this.props.handleInputBlur) {
+        if (!this.textInput) return;
         this.props.handleInputBlur(value);
         this.textInput.value = '';
       }
